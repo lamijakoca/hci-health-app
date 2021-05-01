@@ -6,6 +6,7 @@ import com.example.healthApp.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -15,6 +16,12 @@ import java.util.Optional;
 @RestController
 public class PersonController {
     PersonRepository personRepository;
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public PersonController(PersonRepository personRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.personRepository = personRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     @Autowired
     public PersonController(PersonRepository personRepository) {
@@ -32,11 +39,12 @@ public class PersonController {
         return person.map(response -> ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-    @PostMapping("/users")
-    public Message createUser(@Valid @RequestBody Person person){
-        personRepository.save(person);
-        return new Message("Created!");
-    }
+//    @PostMapping("/register")
+//    public Message createUser(@Valid @RequestBody Person person){
+//        person.setPassword(bCryptPasswordEncoder.encode(person.getPassword()));
+//        personRepository.save(person);
+//        return new Message("Created!");
+//    }
 
     @DeleteMapping("/user/{id}")
     public Message deleteUser(@PathVariable Long id){

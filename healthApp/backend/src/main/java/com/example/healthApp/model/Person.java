@@ -17,9 +17,9 @@ public class Person {
     @NotBlank(message = "Email cannot be blank")
     private String email;
 
-    @NotBlank (message = "Name cannot be blank")
-    @Size(min = 3, max = 255, message = "Your name cannot be less than 3 character")
-    private String name;
+//    @NotBlank (message = "Username cannot be blank")
+//    @Size(min = 3, max = 255, message = "Your username cannot be less than 3 character")
+    private String username;
 
     @NotBlank (message = "Please enter a valid password")
     @Size(min = 8, message = "Your message cannot be less than 8 characters")
@@ -40,7 +40,7 @@ public class Person {
 
     public Person(Long id,
                   @NotBlank(message = "Email cannot be blank") String email,
-                  @NotBlank (message = "Name cannot be blank") @Size(min = 3, max = 255, message = "Your name cannot be less than 3 character") String name,
+                  @NotBlank (message = "Username cannot be blank") @Size(min = 3, max = 255, message = "Your username cannot be less than 3 character") String username,
                   @NotBlank (message = "Please enter a valid password") @Size(min = 8, message = "Your message cannot be less than 8 characters") String password,
                   @NotBlank (message = "Please specify your gender") String gender,
                   Float weight,
@@ -51,7 +51,7 @@ public class Person {
                   Long steps_goal) {
         this.id = id;
         this.email = email;
-        this.name = name;
+        this.username = username;
         this.password = password;
         this.gender = gender;
         this.weight = weight;
@@ -78,12 +78,12 @@ public class Person {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String name) {
+        this.username = username;
     }
 
     public String getPassword() {
