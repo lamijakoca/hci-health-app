@@ -10,6 +10,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
@@ -41,7 +43,7 @@ public class JwtAuthenticationController {
     }
 
     @RequestMapping(path = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> savePerson(@RequestBody PersonDTO personDTO) throws Exception{
+    public ResponseEntity<?> savePerson(@Valid @RequestBody PersonDTO personDTO) throws Exception{
         return ResponseEntity.ok(userDetailsService.save(personDTO));
     }
 

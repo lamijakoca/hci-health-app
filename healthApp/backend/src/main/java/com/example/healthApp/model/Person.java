@@ -17,8 +17,8 @@ public class Person {
     @NotBlank(message = "Email cannot be blank")
     private String email;
 
-//    @NotBlank (message = "Username cannot be blank")
-//    @Size(min = 3, max = 255, message = "Your username cannot be less than 3 character")
+    @NotBlank (message = "Username cannot be blank")
+    @Size(min = 3, max = 255, message = "Your username cannot be less than 3 character")
     private String username;
 
     @NotBlank (message = "Please enter a valid password")
@@ -82,7 +82,7 @@ public class Person {
         return username;
     }
 
-    public void setUsername(String name) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
