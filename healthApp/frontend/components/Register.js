@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
 // import DatePicker from '@dietime/react-native-date-picker';
 
-function Register(){
-    const [date, setDate] = useState(new Date());
+function Register({navigation}){
+
     return(
         <Container>
             <Text style={styles.text}>Create your account</Text>
@@ -27,22 +27,6 @@ function Register(){
                     </Item>
                     <Item stackedLabel>
                        <Label> Date of birth </Label>
-                        <DatePicker
-                        value={date}
-                        defaultDate={new Date()}
-                        minimumDate={new Date(1950, 1,1)}
-                        maximumDate={new Date()}
-                        locale={"en"}
-                        timeZoneOffsetInMinutes={undefined}
-                        modalTransparent={false}
-                        animationType={"fade"}
-                        // placeHolderText="Select date..."
-                        textStyle={{textAlign:"left"}}
-                        onDateChange={(value) => setDate(value)}
-                        // onDateChange={(value) => console.log(setDate(value))}
-                        disabled={false}/>
-                        {console.log(date.toString().substr(4,12))}
-                        {/* <Text>{date.toString().substr(4,12)}</Text> */}
                        {/* <DatePicker
                        height='200'
                        value={date}
@@ -50,6 +34,9 @@ function Register(){
                        format="yyyy-mm-dd"/>
                         <Text>{date ? date.toDateString() : "Select date..."}</Text> */}
                     </Item>
+                    <Button rounded onPress={() => navigation.push('Home')}>
+                        <Text>Register</Text>
+                    </Button>
                 </Form>
             </Content>
         </Container>
@@ -64,6 +51,6 @@ const styles = StyleSheet.create({
     },
     genderpicker: {
         textAlign:'left',
-    }
+    },
 })
 export default Register;
