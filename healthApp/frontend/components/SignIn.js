@@ -2,7 +2,7 @@ import { Container, Content, Form, Input, Label, Item, Header, Button} from 'nat
 import * as React from 'react';
 import { SafeAreaView, Text, StyleSheet, Alert } from 'react-native';
 
-function SignIn(){
+function SignIn({navigation}){
     return(
         <Container>
           <Header style={styles.header}>
@@ -19,15 +19,15 @@ function SignIn(){
                         <Input/>
                     </Item>
                 </Form>
-                <Button rounded style={styles.signInButton} onPress={()=> Alert.prompt('Notification', 'Ne radi to sad nista')}>
+                <Button rounded style={styles.signInButton} onPress={()=> Alert.alert('Notification', 'Ne radi to sad nista')}>
                     <Text style={styles.text}> Sign in </Text>
+                </Button>
+                <Text>Don't have an account?</Text>
+                <Button transparent onPress={() => navigation.push("Register")}>
+                    <Text>Register an Account</Text>
                 </Button>
             </Content>
         </Container>
-        // <SafeAreaView style={styles.container}>
-        //     <Text>Sign In Screen</Text>
-        //     <Button title="Sign In"/>
-        // </SafeAreaView>
     )
 }
 
