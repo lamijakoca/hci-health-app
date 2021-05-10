@@ -1,6 +1,6 @@
-import { Button, Header, Container, Content, Footer, FooterTab, Icon, ListItem, Right, List, Left } from 'native-base';
+import { Button, Header, Container, Content, Footer, FooterTab, Icon, ListItem, Right, List, Left, View } from 'native-base';
 import * as React from 'react';
-import {StyleSheet, Text } from 'react-native';
+import {SafeAreaView, StyleSheet, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 // import ProfilePicture from 'react-native-profile-picture';
 
@@ -8,24 +8,54 @@ function Home({navigation}){
     return(
         <Container>
             <Header style={styles.header}>
-                {/* <ProfilePicture
-                isPicture={false}
-                width='35%'
-                user="Lamija Koca"
-                shape='circle'/> */}
-            <Text>
-                Username
-                {"\n"}
-                {"\n"}
-                <Text>
-                    Health Details
-                </Text>
-            </Text> 
+                <Icon name="person" style={styles.person}/>
             </Header>
             <Content>
+                <List style={styles.lista}>
+                    <ListItem style={styles.lista}>
+                        <Text>
+                            Date of birth
+                        </Text>
+                    </ListItem>
+                </List>
+                <List>
+                    <ListItem>
+                        <Text>
+                            Location
+                        </Text>
+                    </ListItem>
+                </List>
+                <List>
+                    <ListItem>
+                        <Text>
+                            Weight
+                        </Text>
+                    </ListItem>
+                </List>
+                <List>
+                    <ListItem>
+                        <Text>
+                            Height
+                        </Text>
+                    </ListItem>
+                </List>
+                <List>
+                    <ListItem>
+                        <Text>
+                            Mobile
+                        </Text>
+                    </ListItem>
+                </List>
+                <List>
+                    <ListItem>
+                        <Text>
+                            E-mail
+                        </Text>
+                    </ListItem>
+                </List>
                 <ScrollView>
                     <Text style={styles.history}>Medical History</Text>
-                    <Text>
+                    <Text style={styles.historytext}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
@@ -50,22 +80,28 @@ function Home({navigation}){
 }
 const styles = StyleSheet.create({
     header:{
-       height: '55%',
        top: '5%',
+       marginBottom: '15%',
        backgroundColor: '#fff',
        justifyContent: 'center',
     //    padding: '10%',
        display:'flex',
     //    borderBottomColor: '#fff'
     },
-    username: {
-        marginTop: '0%',
-        marginBottom: '10%'
-    },
     history: {
+        marginTop: '15%',
         fontWeight: 'bold',
         fontSize: 18,
-        marginBottom: 5
+        marginBottom: 5,
+        paddingLeft: 10
+    },
+    historytext: {
+        padding: 10
+    },
+    person: {
+        height: 50,
+        marginBottom: '10%'
     }
+
 })
 export default Home;
