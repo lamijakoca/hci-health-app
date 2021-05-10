@@ -2,7 +2,7 @@ import { Container, Content, Header, List, ListItem, Footer, FooterTab, Icon, Bu
 import * as React from 'react';
 import { StyleSheet, Text} from 'react-native';
 
-function Browse(){
+function Browse({navigation}){
     return(
         <Container>
             <Header style={style.head}>
@@ -10,7 +10,7 @@ function Browse(){
             </Header>
             <Content>
                 <List>
-                    <ListItem>
+                    <ListItem onPress={() => navigation.push('Activity')}>
                         <Left>
                             <Icon name="bicycle"/>
                             <Text style={style.text}>Activity</Text>
