@@ -40,17 +40,17 @@ function Activity(){
     return(
         <SafeAreaView style={styles.view}>
             <Text style={styles.text2}>Is Pedometer available: {isPedometerAvailable}</Text>
+            <Text style={styles.text2}>Walk! And watch this go up: {currentStepCount}</Text>
             <Text style={styles.text}>Steps taken in the last 24 hours: </Text>
-            <ProgressCircle
+            {/* <ProgressCircle
                 percent={50}
                 radius={50}
                 borderWidth={10}
                 color="#3399ff"
                 shadowColor="999"
-                bgColor="white">
+                bgColor="white"> */}
             <Text style={styles.steps}>{pastStepCount}</Text>
-           </ProgressCircle> 
-            <Text style={styles.text2}>Walk! And watch this go up: {currentStepCount}</Text>
+           {/* </ProgressCircle>  */}
         </SafeAreaView>
     )
 }
@@ -59,12 +59,12 @@ const styles = StyleSheet.create({
     text: {
         marginTop: '40%',
         fontSize: 18,
-        // fontWeight: 'bold'
+        fontWeight: 'bold'
     },
     text2: {
-        top: 10,
+        top: '30%',
         fontSize: 18,
-        fontWeight: 'bold'
+        // fontWeight: 'bold'
     },
     steps: {
         color: 'blue',

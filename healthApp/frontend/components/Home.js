@@ -14,42 +14,42 @@ function Home({navigation}){
                 <List style={styles.lista}>
                     <ListItem style={styles.lista}>
                         <Text>
-                            Date of birth
+                            Date of birth: September 7, 1999
                         </Text>
                     </ListItem>
                 </List>
                 <List>
                     <ListItem>
                         <Text>
-                            Location
+                            Location: Novi Pazar
                         </Text>
                     </ListItem>
                 </List>
                 <List>
                     <ListItem>
                         <Text>
-                            Weight
+                            Weight: 64
                         </Text>
                     </ListItem>
                 </List>
                 <List>
                     <ListItem>
                         <Text>
-                            Height
+                            Height: 173
                         </Text>
                     </ListItem>
                 </List>
                 <List>
                     <ListItem>
                         <Text>
-                            Mobile
+                            Mobile: +381 63 894 30 25
                         </Text>
                     </ListItem>
                 </List>
                 <List>
                     <ListItem>
                         <Text>
-                            E-mail
+                            E-mail: klamija99@gmail.com
                         </Text>
                     </ListItem>
                 </List>
@@ -77,7 +77,7 @@ function Home({navigation}){
                         <Icon name="pulse"/>
                     </Button>
                     <Button onPress={() => navigation.push('Browse')}>
-                        <Icon name="navigate"/>
+                        <Icon name="apps"/>
                     </Button>
                 </FooterTab>
             </Footer>

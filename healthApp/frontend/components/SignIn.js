@@ -1,8 +1,9 @@
 import { Container, Content, Form, Input, Label, Item, Header, Button} from 'native-base';
-import * as React from 'react';
+import React, {useState} from 'react';
 import { SafeAreaView, Text, StyleSheet, Alert } from 'react-native';
 
 function SignIn({navigation}){
+
     return(
         <Container>
           <Header style={styles.header}>
@@ -19,11 +20,11 @@ function SignIn({navigation}){
                         <Input/>
                     </Item>
                 </Form>
-                <Button rounded style={styles.signInButton} onPress={()=> Alert.alert('Notification', 'Ne radi to sad nista')}>
+                <Button rounded style={styles.signInButton} onPress={()=> navigation.push('Home')}>
                     <Text style={styles.text}> Sign in </Text>
                 </Button>
-                <Text>Don't have an account?</Text>
-                <Button transparent onPress={() => navigation.push("Register")}>
+                <Text style={styles.question} >Don't have an account?</Text>
+                <Button style={styles.transButton} transparent onPress={() => navigation.push("Register")}>
                     <Text>Register an Account</Text>
                 </Button>
             </Content>
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     content: {
-        padding:'10%'
+        padding:'10%',
     },
     header: {
         backgroundColor:'#fff',
@@ -59,6 +60,15 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#67a3d9',
         top: 40
+    },
+    question: {
+        alignSelf:'center',
+        top: '5%'
+    },
+    transButton: {
+        alignSelf: 'center',
+        top: '5%',
+        
     }
 }); 
 

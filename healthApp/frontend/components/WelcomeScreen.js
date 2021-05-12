@@ -1,19 +1,16 @@
 import React from 'react';
-import {SafeAreaView, Text, Button} from 'react-native';
+import {SafeAreaView, Text, Button, StyleSheet} from 'react-native';
 
 function WelcomeScreen({navigation}){
     return(
-        <SafeAreaView>
+        <SafeAreaView >
             <Text style={styles.stil}>HealthApp is always here for you!</Text> 
             <Button title="Get started!" onPress={()=> navigation.push("SignIn")} style={styles.dugme}/>
         </SafeAreaView>
     );
 }
 
-const styles = {
-    sve: {
-        backgroundColor: 'red',
-    },
+const styles = StyleSheet.create({
     stil: {
         textAlign: 'center',
         fontSize: 18,
@@ -33,6 +30,6 @@ const styles = {
         textAlign: 'center',
         marginLeft: 40,
     }
-}
+});
 
 export default WelcomeScreen;
