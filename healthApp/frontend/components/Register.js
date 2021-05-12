@@ -1,8 +1,8 @@
 import { View, Text, Content, Form, Item, Label, Input, Container, Button} from 'native-base';
 import React, {useState} from 'react';
-import {Platform, StyleSheet} from 'react-native';
-// import DatePicker from '@dietime/react-native-date-picker';
-// import DateTimePicker from '@react-native-community/datetimepicker';
+import { StyleSheet } from 'react-native';
+import axios from 'axios';
+
 
 function Register({navigation}){
     const [username, setUsername] = useState('');
@@ -11,10 +11,17 @@ function Register({navigation}){
     const [gender, setGender] = useState('');
     const [isRegistrationSucces, setIsRegistrationSucces] = useState(false);
 
-    fetch('http://192.168.31.170:9009/register')
-    .then(res => res.json())
-    .then(data => console.log('Output: ', data))
-    .catch(err => console.error(err))
+    const registerSubmit = () => {
+        const newUser = {username, email, password, gender};
+        axios.post('http://192.168.1.9:9009/register', newUser)
+             .then((res) => {
+                 if (res.status === 200) {
+                     console.log('Register Success!')
+                     setIsRegistrationSucces(true);
+                 }
+                 else console.log('Nije okej nesto.')
+             })
+    }
 
     return(
         <Container>
@@ -49,7 +56,11 @@ function Register({navigation}){
                     </Item>
                     <Button rounded 
                         style={styles.regButton} 
-                        onPress={() => console.log(email, username, password, gender)}>
+                        onPress={() => {
+                            // console.log(email, username, password, gender);
+                            registerSubmit();
+                            isRegistrationSucces ? navigation.push("Home") : console.log('Registartion is not ok')
+                        }}>
                         <Text style={styles.txtRegister}>Register</Text>
                     </Button>
                 </Form>

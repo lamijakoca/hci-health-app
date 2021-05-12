@@ -28,6 +28,11 @@ public class PersonController {
         this.personRepository = personRepository;
     }
 
+    @GetMapping("/helloworld")
+    public Message helloWorld(){
+        return new Message("Hello!");
+    }
+
     @GetMapping("/users")
     public List<Person> getAll(){
         return (List<Person>) personRepository.findAll();
