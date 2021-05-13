@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Container, Content, Form, Input, Label, Item, Header, Button} from 'native-base';
 import React, {useState} from 'react';
-import { SafeAreaView, Text, StyleSheet, Alert } from 'react-native';
+import { SafeAreaView, Text, StyleSheet, Alert, Image } from 'react-native';
 
 function SignIn({navigation}){
     // const [username, setUsername] = useState('');
@@ -21,7 +21,8 @@ function SignIn({navigation}){
     return(
         <Container>
           <Header style={styles.header}>
-             <Text style={styles.headerText}>Health + Logo</Text>
+             {/* treba da skinem png sa sajta */}
+             <Image style={styles.logo} source={require('../img/logo.png')}/>
           </Header>
             <Content style={styles.content}>
                 <Form>
@@ -53,10 +54,12 @@ const styles = StyleSheet.create({
     },
     content: {
         padding:'10%',
+        top: '5%'
     },
     header: {
         backgroundColor:'#fff',
         borderBottomColor:'#fff',
+        height: '25%'
     },
     signInButton:{
         width: 150,
@@ -83,6 +86,9 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         top: '5%',
         
+    },
+    logo: {
+        top: '-20%',
     }
 }); 
 
