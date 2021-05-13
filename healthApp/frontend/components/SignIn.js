@@ -1,9 +1,23 @@
+import axios from 'axios';
 import { Container, Content, Form, Input, Label, Item, Header, Button} from 'native-base';
 import React, {useState} from 'react';
 import { SafeAreaView, Text, StyleSheet, Alert } from 'react-native';
 
 function SignIn({navigation}){
+    // const [username, setUsername] = useState('');
+    // const [password, setPassword] = useState('');
+    // const [isLogin, setIsLogin] = useState(false);
+    // const [isAuthorized, setIsAuthorized] = useState(false);
 
+    // const loginSubmit = () => {
+    //     const User = {username, password};
+    //     axios.post('http://192.168.1.9:9009/authenticate', User)
+    //          .then((res) => {
+    //              const {token} = res.data;
+    //              localStorage.setItem('Authorization', 'Bearer ' + token);
+    //              setIsAuthorized(true);
+    //          })
+    // }
     return(
         <Container>
           <Header style={styles.header}>
