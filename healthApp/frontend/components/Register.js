@@ -1,6 +1,6 @@
-import { View, Text, Content, Form, Item, Label, Input, Container, Button} from 'native-base';
+import { Text, Content, Form, Item, Label, Input, Container, Button } from 'native-base';
 import React, {useState} from 'react';
-import { StyleSheet } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
 import axios from 'axios';
 
 
@@ -19,7 +19,9 @@ function Register({navigation}){
                      console.log('Register Success!')
                      setIsRegistrationSucces(true);
                  }
-                 else console.log('Nije okej nesto.')
+                 else if (res.status === 400) {
+                     console.log('The email already exists.');
+                 }
              })
     }
 
@@ -57,9 +59,8 @@ function Register({navigation}){
                     <Button rounded 
                         style={styles.regButton} 
                         onPress={() => {
-                            // console.log(email, username, password, gender);
                             registerSubmit();
-                            isRegistrationSucces ? navigation.push("Home") : console.log('Registartion is not ok')
+                            isRegistrationSucces ? navigation.push("SignIn") : Alert.alert("Registartion failed", "Please check your inputs");
                         }}>
                         <Text style={styles.txtRegister}>Register</Text>
                     </Button>
