@@ -30,13 +30,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
-//    @Autowired
-//    public WebSecurityConfig(JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint, UserDetailsService jwtUserDetailsService, JwtRequestFilter jwtRequestFilter) {
-//        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
-//        this.jwtUserDetailsService = jwtUserDetailsService;
-//        this.jwtRequestFilter = jwtRequestFilter;
-//    }
-
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
@@ -55,24 +48,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable()
-                // dont authenticate this particular request
+        httpSecurity.cors().and().csrf().disable()
                 .authorizeRequests()
-//                .antMatchers("/test-role").hasAuthority("person")
-//                .antMatchers(HttpMethod.POST, "/register-admin").permitAll()
-//                .antMatchers(HttpMethod.GET, "/locations/**").permitAll()
-//                .antMatchers(HttpMethod.GET, "/medications/**").permitAll()
-//                .antMatchers(HttpMethod.GET, "/persons/**").permitAll()
-//                .antMatchers(HttpMethod.GET, "/positions/**").permitAll()
-//                .antMatchers(HttpMethod.GET, "/pharmacy/**").permitAll()
-                  .antMatchers(HttpMethod.POST, "/authenticate", "/register").permitAll()
-                // all other requests need to be authenticated
+                .antMatchers(HttpMethod.POST, "/authenticate", "/register").permitAll()
+//                .antMatchers(HttpMethod.GET, "/api/author/**").permitAll()
+//                .antMatchers(HttpMethod.POST, "/api/author/search").permitAll()
                 .anyRequest().authenticated().and()
-                // make sure we use stateless session; session won't be used to
-                // store user's state.
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }
