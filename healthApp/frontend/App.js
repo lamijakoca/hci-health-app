@@ -8,6 +8,7 @@ import Register from './components/Register';
 import Home from './components/Home';
 import Browse from './components/Browse';
 import Activity from './components/Activity';
+import Symptoms from './components/Symptoms';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ export default function App() {
         <Stack.Screen name="Home" component={Home}/>
         <Stack.Screen name="Browse" component={Browse}/>
         <Stack.Screen name="Activity" component={Activity}/>
+        <Stack.Screen name="Symptoms" component={Symptoms}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
