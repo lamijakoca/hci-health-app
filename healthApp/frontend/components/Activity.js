@@ -2,13 +2,13 @@ import * as React from 'react';
 import { SafeAreaView, Text, StyleSheet} from 'react-native';
 import {Pedometer} from 'expo-sensors';
 import { useState } from 'react/cjs/react.development';
-import ProgressCircle from 'react-native-progress-circle';
 
 function Activity(){
     const [isPedometerAvailable, setIsPedometerAvailable] = useState('checking');
     const [pastStepCount, setPastStepCount] = useState(0);
     const [currentStepCount, setCurrentStepCount] = useState(0);
-
+    const [sevenDays, setSevenDays] = useState(0);
+    
     // const _subscribe = () => {
     //     const subscription = Pedometer.watchStepCount(result=>{
     //         setCurrentStepCount(result.steps)
@@ -27,30 +27,35 @@ function Activity(){
             setIsPedometerAvailable(String(result))
         }
     )
-    
-    const end = new Date();
-    const start = new Date();
-    start.setDate(end.getDate() - 1);
-    Pedometer.getStepCountAsync(start, end).then(
-        result => {
-            setPastStepCount(result.steps)
-        }
-    )
+
+    const getStepsFor7Days = () => {
+        const start7 = new Date();
+        const end7 = new Date();
+        start7.setDate(end7.getDate() - 7);
+        Pedometer.getStepCountAsync(start7, end7)
+                 .then(result => {
+                     setSevenDays(result.steps)
+                 })
+
+    }
+    const getStepsLastDay = () => {
+        const end = new Date();
+        const start = new Date();
+        start.setDate(end.getDate() - 1);
+        Pedometer.getStepCountAsync(start, end).then(
+            result => {
+                setPastStepCount(result.steps)
+            }
+        )
+    }
     
     return(
         <SafeAreaView style={styles.view}>
             <Text style={styles.text2}>Is Pedometer available: {isPedometerAvailable}</Text>
             <Text style={styles.text2}>Walk! And watch this go up: {currentStepCount}</Text>
             <Text style={styles.text}>Steps taken in the last 24 hours: </Text>
-            {/* <ProgressCircle
-                percent={50}
-                radius={50}
-                borderWidth={10}
-                color="#3399ff"
-                shadowColor="999"
-                bgColor="white"> */}
             <Text style={styles.steps}>{pastStepCount}</Text>
-           {/* </ProgressCircle>  */}
+            <Text>Steps taken in the last 7 days: {sevenDays} </Text>
         </SafeAreaView>
     )
 }
