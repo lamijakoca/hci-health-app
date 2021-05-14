@@ -46,7 +46,7 @@ function Browse({navigation}){
                             <Icon name='arrow-forward'/>
                         </Right>
                     </ListItem>
-                    <ListItem>
+                    <ListItem onPress={() => navigation.push('Symptoms')}>
                         <Left>
                             <Icon name="medkit"/>
                             <Text style={style.text}>Symptoms</Text>
