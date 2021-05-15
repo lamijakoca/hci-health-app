@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { Container, Content, Form, Input, Label, Item, Header, Button} from 'native-base';
 import React, {useState} from 'react';
-import { SafeAreaView, Text, StyleSheet, Alert, Image } from 'react-native';
+import { Text, StyleSheet, Image, TextInput } from 'react-native';
 
 function SignIn({navigation}){
-    // const [username, setUsername] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [isLogin, setIsLogin] = useState(false);
-    // const [isAuthorized, setIsAuthorized] = useState(false);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [isLogin, setIsLogin] = useState(false);
 
     // const loginSubmit = () => {
     //     const User = {username, password};
@@ -18,11 +17,13 @@ function SignIn({navigation}){
     //              setIsAuthorized(true);
     //          })
     // }
+    
     return(
         <Container>
           <Header style={styles.header}>
              {/* treba da skinem png sa sajta */}
-             <Image style={styles.logo} source={require('../img/logo.png')}/>
+             <Image style={styles.logo} 
+                    source={require('../img/logo.png')}/>
           </Header>
             <Content style={styles.content}>
                 <Form>
@@ -32,14 +33,20 @@ function SignIn({navigation}){
                     </Item>
                     <Item stackedLabel>
                         <Label>Password</Label>
-                        <Input/>
+                        <Input secureTextEntry={true}/>
                     </Item>
                 </Form>
-                <Button rounded style={styles.signInButton} onPress={()=> navigation.push('Home')}>
-                    <Text style={styles.text}> Sign in </Text>
+                <Button rounded 
+                        style={styles.signInButton} 
+                        onPress={()=> navigation.push('Home')}>
+                    <Text style={styles.text}> 
+                        Sign in 
+                    </Text>
                 </Button>
-                <Text style={styles.question} >Don't have an account?</Text>
-                <Button style={styles.transButton} transparent onPress={() => navigation.push("Register")}>
+                <Text style={styles.question}> Don't have an account? </Text>
+                <Button style={styles.transButton} 
+                        transparent 
+                        onPress={() => navigation.push("Register")}>
                     <Text>Register an Account</Text>
                 </Button>
             </Content>
