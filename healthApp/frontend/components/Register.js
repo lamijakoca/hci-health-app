@@ -1,6 +1,6 @@
-import { Text, Content, Form, Item, Label, Input, Container, Button } from 'native-base';
+import { Text, Content, Form, Item, Label, Input, Container, Button} from 'native-base';
 import React, {useState} from 'react';
-import { Alert, StyleSheet } from 'react-native';
+import { Alert, StyleSheet} from 'react-native';
 import axios from 'axios';
 
 
@@ -52,9 +52,10 @@ function Register({navigation}){
                     </Item>
                     <Item stackedLabel>
                         <Label>Gender</Label>
-                        <Input 
+                        
+                        {/* <Input 
                             value={gender}
-                            onChangeText={setGender}/>
+                            onChangeText={setGender}/> */}
                     </Item>
                     <Button rounded 
                         style={styles.regButton} 
