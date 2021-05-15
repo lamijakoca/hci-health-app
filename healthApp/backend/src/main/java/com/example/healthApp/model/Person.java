@@ -1,12 +1,11 @@
 package com.example.healthApp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Person {
@@ -34,6 +33,9 @@ public class Person {
     private Float water_goal;
     private Float sleep_goal;
     private Long steps_goal;
+
+    @OneToMany(targetEntity = Note.class, mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Note> notes = new ArrayList<>();
 
     public Person() {
     }
@@ -148,5 +150,13 @@ public class Person {
 
     public void setSteps_goal(Long steps_goal) {
         this.steps_goal = steps_goal;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
     }
 }
