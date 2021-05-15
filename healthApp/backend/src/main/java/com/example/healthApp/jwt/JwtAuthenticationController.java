@@ -1,6 +1,6 @@
 package com.example.healthApp.jwt;
 
-import com.example.healthApp.model.PersonDTO;
+import com.example.healthApp.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -43,8 +43,8 @@ public class JwtAuthenticationController {
     }
 
     @RequestMapping(path = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> savePerson(@Valid @RequestBody PersonDTO personDTO) throws Exception{
-        return ResponseEntity.ok(userDetailsService.save(personDTO));
+    public ResponseEntity<?> savePerson(@Valid @RequestBody Person person) throws Exception{
+        return ResponseEntity.ok(userDetailsService.save(person));
     }
 
     private void authenticate(String username, String password) throws Exception {
