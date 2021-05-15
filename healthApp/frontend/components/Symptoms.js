@@ -7,16 +7,17 @@ function Symptoms(){
     return(
         <Container>
             <Header style={styles.header}>
-                <Image source={require('../img/logo.png')}/>
+                <Image style={styles.logo} source={require('../img/logo.png')}/>
                 {/* <Text>Health</Text> */}
             </Header>
-            <Content>
-                <ScrollView>
+            <Content style={styles.content}>
                     <Button bordered style={styles.buttonCN} >
                         <Text style={styles.btnText}>
                             Create note
                         </Text>
                     </Button>
+                <ScrollView>
+                    
                 </ScrollView>
             </Content>
         </Container>
@@ -28,8 +29,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderColor: '#fff',
         borderBottomColor: '#fff',
-        paddingTop: 20,
-        // padding: '10%'
+        height: '25%',
     },
     buttonCN: {
         width: 150,
@@ -37,11 +37,17 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         borderTopWidth: 5,
         justifyContent: 'center',
-
+        alignSelf: 'center',
     },
     btnText: {
         color:'#ff8f9b',
         fontWeight:'bold',
+    },
+    logo: {
+        top: '-20%'
+    },
+    content: {
+        top: '10%'
     }
 })
 export default Symptoms;
