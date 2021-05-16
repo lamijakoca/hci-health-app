@@ -3,7 +3,7 @@ import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler';
 import {Text, StyleSheet, Image} from 'react-native'
 
-function Symptoms(){
+function Symptoms({navigation}){
     return(
         <Container>
             <Header style={styles.header}>
@@ -11,7 +11,7 @@ function Symptoms(){
                 {/* <Text>Health</Text> */}
             </Header>
             <Content style={styles.content}>
-                    <Button bordered style={styles.buttonCN} >
+                    <Button bordered style={styles.buttonCN} onPress={() => navigation.push("Note")} >
                         <Text style={styles.btnText}>
                             Create note
                         </Text>
