@@ -44,21 +44,6 @@ public class JwtUserDetailsService implements UserDetailsService {
         newPerson.setWater_goal(person.getWater_goal());
         newPerson.setSleep_goal(person.getSleep_goal());
         newPerson.setSteps_goal(person.getSteps_goal());
-        newPerson.setNotes(person.getNotes());
         return personRepository.save(newPerson);
     }
-//    public Person save(PersonDTO person){
-//        Person newPerson = new Person();
-//        newPerson.setEmail(person.getEmail());
-//        newPerson.setUsername(person.getUsername());
-//        newPerson.setPassword(bcryptEncoder.encode(person.getPassword()));
-//        newPerson.setGender(person.getGender());
-//        newPerson.setWeight(person.getWeight());
-//        newPerson.setHeight(person.getHeight());
-//        newPerson.setDob(person.getDob());
-//        newPerson.setWater_goal(person.getWater_goal());
-//        newPerson.setSleep_goal(person.getSleep_goal());
-//        newPerson.setSteps_goal(person.getSteps_goal());
-//        return personRepository.save(newPerson);
-//    }
 }
