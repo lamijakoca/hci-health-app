@@ -1,6 +1,7 @@
 package com.example.healthApp.jwt;
 
 import com.example.healthApp.model.Person;
+import com.example.healthApp.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,7 +16,6 @@ import javax.validation.Valid;
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
-
     private final AuthenticationManager authenticationManager;
 
     private final JwtTokenUtil jwtTokenUtil;
@@ -23,7 +23,7 @@ public class JwtAuthenticationController {
     private final JwtUserDetailsService userDetailsService;
 
     @Autowired
-    public JwtAuthenticationController(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, JwtUserDetailsService userDetailsService) {
+    public JwtAuthenticationController(AuthenticationManager authenticationManager, PersonRepository personRepository, JwtTokenUtil jwtTokenUtil, JwtUserDetailsService userDetailsService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.userDetailsService = userDetailsService;
@@ -43,7 +43,7 @@ public class JwtAuthenticationController {
     }
 
     @RequestMapping(path = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> savePerson(@Valid @RequestBody Person person) throws Exception{
+    public ResponseEntity<?> savePerson(@Valid @RequestBody Person person){
         return ResponseEntity.ok(userDetailsService.save(person));
     }
 
