@@ -16,12 +16,8 @@ import java.util.Optional;
 @RestController
 public class PersonController {
     PersonRepository personRepository;
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+//    BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public PersonController(PersonRepository personRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.personRepository = personRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
 
     @Autowired
     public PersonController(PersonRepository personRepository) {
@@ -44,12 +40,6 @@ public class PersonController {
         return person.map(response -> ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-//    @PostMapping("/register")
-//    public Message createUser(@Valid @RequestBody Person person){
-//        person.setPassword(bCryptPasswordEncoder.encode(person.getPassword()));
-//        personRepository.save(person);
-//        return new Message("Created!");
-//    }
 
     @DeleteMapping("/user/{id}")
     public Message deleteUser(@PathVariable Long id){
