@@ -3,9 +3,7 @@ package com.example.healthApp.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Person {
@@ -20,13 +18,10 @@ public class Person {
     @Size(min = 3, max = 255, message = "Your username cannot be less than 3 character")
     private String username;
 
-    @NotBlank (message = "Please enter a valid password")
     @Size(min = 8, message = "Your message cannot be less than 8 characters")
     private String password;
 
-    @NotBlank (message = "Please specify your gender")
     private String gender;
-
     private Float weight;
     private Float height;
     private Date dob;
@@ -34,35 +29,6 @@ public class Person {
     private Float sleep_goal;
     private Long steps_goal;
 
-    @OneToMany(targetEntity = Note.class, mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Note> notes = new ArrayList<>();
-
-    public Person() {
-    }
-
-    public Person(Long id,
-                  @NotBlank(message = "Email cannot be blank") String email,
-                  @NotBlank (message = "Username cannot be blank") @Size(min = 3, max = 255, message = "Your username cannot be less than 3 character") String username,
-                  @NotBlank (message = "Please enter a valid password") @Size(min = 8, message = "Your message cannot be less than 8 characters") String password,
-                  @NotBlank (message = "Please specify your gender") String gender,
-                  Float weight,
-                  Float height,
-                  Date dob,
-                  Float water_goal,
-                  Float sleep_goal,
-                  Long steps_goal) {
-        this.id = id;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.gender = gender;
-        this.weight = weight;
-        this.height = height;
-        this.dob = dob;
-        this.water_goal = water_goal;
-        this.sleep_goal = sleep_goal;
-        this.steps_goal = steps_goal;
-    }
 
     public Long getId() {
         return id;
@@ -152,11 +118,4 @@ public class Person {
         this.steps_goal = steps_goal;
     }
 
-    public List<Note> getNotes() {
-        return notes;
-    }
-
-    public void setNotes(List<Note> notes) {
-        this.notes = notes;
-    }
 }
