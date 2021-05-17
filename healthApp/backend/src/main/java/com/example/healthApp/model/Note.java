@@ -1,25 +1,19 @@
 package com.example.healthApp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
 public class Note {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long noteId;
     private String title;
     private String body;
 
-    @ManyToOne(targetEntity = Person.class)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Person person;
-
-    public Note() {
-    }
-
-    public Note(String title, String body) {
-        this.title = title;
-        this.body = body;
-    }
 
     public Long getNoteId() {
         return noteId;
