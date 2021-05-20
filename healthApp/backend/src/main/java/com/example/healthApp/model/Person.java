@@ -12,10 +12,12 @@ public class Person {
     private Long id;
 
     @NotBlank(message = "Email cannot be blank")
+    @Column(unique = true)
     private String email;
 
     @NotBlank (message = "Username cannot be blank")
     @Size(min = 3, max = 255, message = "Your username cannot be less than 3 character")
+    @Column(unique = true)
     private String username;
 
     @Size(min = 8, message = "Your message cannot be less than 8 characters")
