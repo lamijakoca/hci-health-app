@@ -2,7 +2,6 @@ import { Button, Header, Container, Content, Footer, FooterTab, Icon, ListItem, 
 import * as React from 'react';
 import {SafeAreaView, StyleSheet, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-// import ProfilePicture from 'react-native-profile-picture';
 
 function Home({navigation}){
     return(

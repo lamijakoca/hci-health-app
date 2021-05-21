@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Text, StyleSheet, Image } from "react-native";
 import * as SecureToken from "expo-secure-store";
 import axios from "axios";
+import database from '../utils';
 
 function SignIn({ navigation }) {
   const [username, setUsername] = useState("");
@@ -19,7 +20,7 @@ function SignIn({ navigation }) {
 
   const loginSubmit = () => {
     const User = { username, password };
-    axios.post("http://192.168.1.11:9009/authenticate", User).then((res) => {
+    axios.post(`${database}/authenticate`, User).then((res) => {
       const token = res.data;
       setToken("token", JSON.stringify(token));
       getToken("token");

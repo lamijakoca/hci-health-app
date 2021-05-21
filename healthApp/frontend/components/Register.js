@@ -13,7 +13,7 @@ import React, { useState } from "react";
 import { Alert, StyleSheet } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import axios from "axios";
-import { onChange } from "react-native-reanimated";
+import database from '../utils'
 
 function Register({ navigation }) {
   const [username, setUsername] = useState("");
@@ -25,7 +25,7 @@ function Register({ navigation }) {
 
   const registerSubmit = () => {
     const newUser = { username, email, password, gender };
-    axios.post("http://192.168.1.11:9009/register", newUser).then((res) => {
+    axios.post(`${database}/register`, newUser).then((res) => {
       if (res.status === 200) {
         console.log("Register Success!");
         setIsRegistrationSucces(true);

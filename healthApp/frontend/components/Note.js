@@ -10,20 +10,28 @@ import {
   Icon,
 } from "native-base";
 import { StyleSheet, TextInput } from "react-native";
-import React from "react";
+import React, {useState} from "react";
 
 function Note({ navigation }) {
   const date = new Date();
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
 
   return (
     <Container style={styles.container}>
       <Content>
         <Card style={styles.card}>
           <CardItem header>
-            <TextInput style={styles.title} placeholder="Symptom.." />
+            <TextInput 
+              style={styles.title} 
+              placeholder="Symptom.."
+              onChangeText={(value) => setTitle(value)} />
           </CardItem>
           <CardItem>
-            <Textarea rowSpan={7} placeholder="How did you feel?" />
+            <Textarea  
+              rowSpan={7} 
+              placeholder="How did you feel?"
+              onChangeText={(value) => setBody(value)} />
           </CardItem>
           <CardItem footer>
             <Text>
