@@ -11,27 +11,35 @@ import {
 } from "native-base";
 import { StyleSheet, TextInput } from "react-native";
 import React, {useState} from "react";
+import * as SecureStore from "expo-secure-store";
+import axios from "axios";
+import database from "../utils";
 
 function Note({ navigation }) {
   const date = new Date();
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const [title, setTitle] = useState();
+  const [body, setBody] = useState();
+
+  const createNote = async () => {
+    const token = await SecureStore.getItemAsync("token");
+    if (token){
+      const newNote = {title, body};
+      axios.post(`${database}/create/note`, newNote, {
+        headers: {'Authorization': `Bearer ${token}`}
+      })
+      //sad ovde push na symptoms
+    } 
+  }
 
   return (
     <Container style={styles.container}>
       <Content>
         <Card style={styles.card}>
           <CardItem header>
-            <TextInput 
-              style={styles.title} 
-              placeholder="Symptom.."
-              onChangeText={(value) => setTitle(value)} />
+            <TextInput style={styles.title} placeholder="Symptom.." onChangeText={(value) => setTitle(value)}/>
           </CardItem>
           <CardItem>
-            <Textarea  
-              rowSpan={7} 
-              placeholder="How did you feel?"
-              onChangeText={(value) => setBody(value)} />
+            <Textarea rowSpan={7} placeholder="How did you feel?" onChangeText={(value) => setBody(value)}/>
           </CardItem>
           <CardItem footer>
             <Text>
@@ -41,10 +49,10 @@ function Note({ navigation }) {
         </Card>
       </Content>
       <Footer style={styles.footer}>
-        <Button transparent>
+        <Button transparent onPress={createNote}>
           <Text>Save</Text>
         </Button>
-        <Button bordered onPress={navigation.push("Symptoms")}>
+        <Button bordered>
           <Text>Cancel</Text>
         </Button>
       </Footer>
