@@ -27,7 +27,7 @@ function Note({ navigation }) {
       axios.post(`${database}/create/note`, newNote, {
         headers: {'Authorization': `Bearer ${token}`}
       })
-      //sad ovde push na symptoms
+      return navigation.push('Symptoms');
     } 
   }
 
