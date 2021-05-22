@@ -18,6 +18,11 @@ public class NoteController {
         this.noteRepository = noteRepository;
     }
 
+    @GetMapping(path="notes")
+    List<Note> getAll(){
+        return (List<Note>) noteRepository.findAll();
+    }
+
     @GetMapping(path = "note/{id}")
     ResponseEntity<?> getNoteById(@PathVariable Long id){
         Optional<Note> note = noteRepository.findById(id);
