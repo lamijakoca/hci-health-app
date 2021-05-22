@@ -37,7 +37,7 @@ function Symptoms({navigation}){
                     </Button>
                 <ScrollView>
                     {notes.map((note) => (
-                        <Card style={styles.card}>
+                        <Card style={styles.card} key={note.note_id}>
                         <CardItem header>
                             <Text style={styles.title}>{note.title}</Text>
                         </CardItem>
