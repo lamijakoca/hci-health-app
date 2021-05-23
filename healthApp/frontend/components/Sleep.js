@@ -1,7 +1,7 @@
 import { Button, Container, Content, Header } from "native-base";
-import React from "react";
-import { Text } from "react-native";
 import * as SecureStore from "expo-secure-store";
+import { Text } from "react-native";
+import React from "react";
 
 function Sleep() {
 

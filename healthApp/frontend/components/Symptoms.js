@@ -1,10 +1,9 @@
 import { Button, Container, Header, Content, Card, CardItem } from 'native-base';
-import React, {useState, useEffect} from 'react'
-import { ScrollView } from 'react-native-gesture-handler';
-import {Text, StyleSheet, Image} from 'react-native'
-import * as SecureStore from "expo-secure-store";
-import axios from 'axios';
+import {Text, StyleSheet, Image, ScrollView} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import * as SecureStore from 'expo-secure-store';
 import database from '../utils';
+import axios from 'axios';
 
 function Symptoms({navigation}){
     const [notes, setNotes] = useState([]);
@@ -30,7 +29,9 @@ function Symptoms({navigation}){
                 {/* <Text>Health</Text> */}
             </Header>
             <Content style={styles.content}>
-                    <Button bordered style={styles.buttonCN} onPress={() => navigation.push("Note")} >
+                    <Button bordered 
+                            style={styles.buttonCN} 
+                            onPress={() => navigation.push("Note")}>
                         <Text style={styles.btnText}>
                             Create note
                         </Text>
@@ -39,13 +40,21 @@ function Symptoms({navigation}){
                     {notes.map((note) => (
                         <Card style={styles.card} key={note.note_id}>
                         <CardItem header>
-                            <Text style={styles.title}>{note.title}</Text>
+                            <Text style={styles.title}>
+                                {note.title}
+                            </Text>
                         </CardItem>
+
                         <CardItem>
-                            <Text style={styles.body}>{note.body}</Text>
+                            <Text style={styles.body}>
+                                {note.body}
+                            </Text>
                         </CardItem>
+                        
                         <CardItem footer>
-                            <Text>Footer</Text>
+                            <Text>
+                                Footer
+                            </Text>
                         </CardItem>
                     </Card>
                     ))}
