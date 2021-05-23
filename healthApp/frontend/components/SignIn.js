@@ -14,10 +14,6 @@ function SignIn({ navigation }) {
     return await SecureToken.setItemAsync("token", token);
   };
 
-  // const getToken = async () => {
-  //   return await SecureToken.getItemAsync("token");
-  // };
-  
   const loginSubmit = async() => {
     const User = { username, password };
     axios.post(`${database}/authenticate`, User).then((res) => {
