@@ -1,9 +1,31 @@
 import { Button, Header, Container, Content, Footer, FooterTab, Icon, ListItem, Right, List, Left, View } from 'native-base';
-import * as React from 'react';
-import {SafeAreaView, StyleSheet, Text } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {SafeAreaView, StyleSheet, Text} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import * as SecureStore from 'expo-secure-store';
 
 function Home({navigation}){
+    const [weight, setWeight] = useState(0);
+    const [height, setHeight] = useState(0);
+
+    const getMeasure = async (key) => {
+        return await SecureStore.getItemAsync(key);
+    }
+    const fetchWeight = async() => {
+        const kg = await getMeasure("weight");
+        setWeight(kg)
+    };
+
+    const fetchHeight = async() => {
+        const hi = await getMeasure("height");
+        setHeight(hi);
+    }
+
+    useEffect(()=>{
+        fetchWeight();
+        fetchHeight();
+    }, [])
+
     return(
         <Container>
             <Header style={styles.header}>
@@ -27,14 +49,15 @@ function Home({navigation}){
                 <List>
                     <ListItem>
                         <Text>
-                            Weight: 64
+                            {/* moraju ovi navodnici da se sklone */}
+                            Weight: {JSON.parse(weight)}
                         </Text>
                     </ListItem>
                 </List>
                 <List>
                     <ListItem>
                         <Text>
-                            Height: 173
+                            Height: {JSON.parse(height)}
                         </Text>
                     </ListItem>
                 </List>
