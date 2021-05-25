@@ -37,7 +37,7 @@ function Sleep() {
     const date = new Date();
     const hours = date.getHours();
     let background;
-    if (hours > 19) {
+    if (hours > 18) {
       background = require("../img/night.jpeg");
     } else background = require("../img/day.jpg");
 
