@@ -1,9 +1,18 @@
-import {Container,Content,Form, Input,Label,Item,Header,Button} from "native-base";
+import {
+  Container,
+  Content,
+  Form,
+  Input,
+  Label,
+  Item,
+  Header,
+  Button,
+} from "native-base";
 import React, { useState, useEffect } from "react";
 import { Text, StyleSheet, Image } from "react-native";
 import * as SecureToken from "expo-secure-store";
 import axios from "axios";
-import database from '../utils';
+import database from "../utils";
 
 function SignIn({ navigation }) {
   const [username, setUsername] = useState("");
@@ -14,18 +23,17 @@ function SignIn({ navigation }) {
     return await SecureToken.setItemAsync("token", token);
   };
 
-  const loginSubmit = async() => {
+  const loginSubmit = async () => {
     const User = { username, password };
-    axios.post(`${database}/authenticate`, User).then((res) => {
+    await axios.post(`${database}/authenticate`, User).then((res) => {
       const token = res.data.jwttoken;
       setToken(token);
-      console.log(token);
       setIsLogin(true);
     });
     if (isLogin == true) {
       navigation.push("Home");
     } else {
-      console.log("nije dobro ovo");
+      console.log("your bad");
     }
   };
 
@@ -39,7 +47,11 @@ function SignIn({ navigation }) {
         <Form>
           <Item stackedLabel>
             <Label> Username </Label>
-            <Input value={username} autoCapitalize="none" onChangeText={setUsername} />
+            <Input
+              value={username}
+              autoCapitalize="none"
+              onChangeText={setUsername}
+            />
           </Item>
 
           <Item stackedLabel>
@@ -50,7 +62,6 @@ function SignIn({ navigation }) {
               secureTextEntry={true}
             />
           </Item>
-
         </Form>
 
         <Button
