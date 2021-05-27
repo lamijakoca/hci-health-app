@@ -1,7 +1,8 @@
-import * as React from 'react';
-import { SafeAreaView, Text, StyleSheet} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Text, StyleSheet} from 'react-native';
+import { Container } from 'native-base';
 import {Pedometer} from 'expo-sensors';
-import { useState } from 'react/cjs/react.development';
+
 
 function Activity(){
     const [isPedometerAvailable, setIsPedometerAvailable] = useState('checking');
@@ -48,21 +49,24 @@ function Activity(){
             }
         )
     }
-    
+    useEffect(()=> {
+        getStepsFor7Days();
+        getStepsLastDay();
+    }, [])
+
     return(
-        <SafeAreaView style={styles.view}>
-            <Text style={styles.text2}>Is Pedometer available: {isPedometerAvailable}</Text>
+        <Container style={styles.view}>
             <Text style={styles.text2}>Walk! And watch this go up: {currentStepCount}</Text>
             <Text style={styles.text}>Steps taken in the last 24 hours: </Text>
             <Text style={styles.steps}>{pastStepCount}</Text>
             <Text>Steps taken in the last 7 days: {sevenDays} </Text>
-        </SafeAreaView>
+        </Container>
     )
 }
 
 const styles = StyleSheet.create({
     text: {
-        marginTop: '40%',
+        // marginTop: '40%',
         fontSize: 18,
         fontWeight: 'bold'
     },
@@ -80,7 +84,9 @@ const styles = StyleSheet.create({
     view: {
         alignItems: 'center',
         justifyContent: 'center',
-        textAlign: 'center'
+        textAlign: 'center',
+        backgroundColor: '#fff',
+
     }
 })
 
