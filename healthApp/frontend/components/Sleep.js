@@ -1,8 +1,7 @@
-import { Text, StyleSheet, ImageBackground } from "react-native";
+import { Text, StyleSheet, ImageBackground, Alert } from "react-native";
 import { Button, Container, View } from "native-base";
 import * as SecureStore from "expo-secure-store";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 function Sleep() {
   const [sleep, setSleep] = useState(0);
@@ -38,7 +37,7 @@ function Sleep() {
     const hours = date.getHours();
     let background;
     if (hours > 18) {
-      background = require("../img/night.jpeg");
+      background = require("../img/night.jpg");
     } else background = require("../img/day.jpg");
 
     return background;
@@ -50,10 +49,15 @@ function Sleep() {
         <View style={styles.view}>
           <Button
             style={styles.buttons}
-            onPress={() => setTime("start", JSON.stringify(time()))}>
-            <Text style={styles.txt}>
-              Sleep
-            </Text>
+            onPress={() => {
+              Alert.alert(
+                "Reminder",
+                "Don't forget to press the 'I woke up' button when you rest nicely"
+              );
+              setTime("start", JSON.stringify(time()));
+            }}
+          >
+            <Text style={styles.txt}>Sleep</Text>
           </Button>
           <Button
             style={styles.buttons}
@@ -63,14 +67,11 @@ function Sleep() {
               const end = await getTime("end");
               const calculate = msToTime(end - start);
               setSleep(calculate);
-            }}>
-            <Text style={styles.txt}>
-              Woke up
-            </Text>
+            }}
+          >
+            <Text style={styles.txt}>Woke up</Text>
           </Button>
-          <Text style = {styles.notification}> 
-              You slept {sleep} hours 
-          </Text>
+          <Text style={styles.notification}>You slept {sleep} hours</Text>
         </View>
       </ImageBackground>
     </Container>
@@ -108,14 +109,14 @@ const styles = StyleSheet.create({
   txt: {
     fontWeight: "bold",
     fontSize: 16,
-    alignSelf: "center",
+    textAlign: "center",
     // right: 17
   },
   notification: {
     fontSize: 16,
-    fontStyle: 'italic',
-    fontWeight:'bold',
-    marginTop: 15
-  }
+    fontStyle: "italic",
+    fontWeight: "bold",
+    marginTop: 15,
+  },
 });
 export default Sleep;
