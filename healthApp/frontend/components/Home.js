@@ -1,8 +1,7 @@
-import { Button, Header, Container, Content, Footer, FooterTab, Icon, ListItem, Right, List, Left, View } from 'native-base';
-import React, {useState, useEffect} from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Button, Header, Container, Content, Footer, FooterTab, Icon, ListItem, List } from 'native-base';
+import {Alert, StyleSheet, Text, ScrollView} from 'react-native';
 import * as SecureStore from 'expo-secure-store';
+import React, {useState, useEffect} from 'react';
 
 function Home({navigation}){
     const [weight, setWeight] = useState(0);
@@ -91,6 +90,25 @@ function Home({navigation}){
                     in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
                     Excepteur sint occaecat cupidatat non proident, sunt in 
                     </Text>
+                    <Button 
+                    bordered 
+                    danger 
+                    style={styles.logout}
+                    onPress={async() => {
+                        await SecureStore.deleteItemAsync("token");
+                        Alert.alert(
+                            "Logout" , 
+                            "Are you sure you want to logout?", 
+                            [
+                                {text:"Cancel",  style:"cancel"}, 
+                                {text: "Yes", onPress: () => navigation.push('SignIn')}
+                            ]
+                        )
+                    }} >
+                        <Text style={styles.btntxt}>
+                            Logout
+                        </Text>
+                    </Button>
                 </ScrollView>
             </Content>
             <Footer>
@@ -129,6 +147,24 @@ const styles = StyleSheet.create({
     person: {
         height: 50,
         marginBottom: '10%'
+    },
+    logout: {
+        
+        alignSelf:'center',
+        justifyContent: 'center',
+        width: 150,
+        borderLeftWidth: 3,
+        borderTopWidth: 3,
+        borderRightWidth: 3,
+        borderBottomWidth: 3
+    },
+    btntxt: {
+        textAlign:'center',
+        alignSelf:'center',
+        justifyContent:'center',
+        fontWeight:'600',
+        color: 'red'
+        
     }
 
 })
